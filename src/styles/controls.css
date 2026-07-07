@@ -1,0 +1,303 @@
+/* ==========================================================================
+   Phase 1 controls — Smart Search, Advanced Filters, Sorting, Smart Cart.
+   Everything here reuses existing tokens (colors, radius, shadows,
+   transitions) and mirrors established patterns (.auth-tab's pill-toggle
+   style, .field-input's form-control style, .icon-btn's circular buttons)
+   rather than introducing a new visual language.
+   ========================================================================== */
+
+/* Reusable pill toggle — same visual recipe as .auth-tab, generalised for
+   filter chips (veg/non-veg, spice level, base-collection switcher). */
+.filter-chip {
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-surface);
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast), transform var(--transition-fast) var(--ease-standard);
+}
+.filter-chip:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.filter-chip.is-active {
+  background-color: var(--color-primary);
+  color: var(--text-on-accent);
+  border-color: var(--color-primary);
+}
+.filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Search bar (standalone — used on the Menu page) */
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 220px;
+}
+.search-bar__icon {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+.search-bar__input {
+  width: 100%;
+  padding: 12px 40px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 15px;
+  transition: border-color var(--transition-fast) var(--ease-standard), box-shadow var(--transition-fast) var(--ease-standard);
+}
+.search-bar__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+.search-bar__clear {
+  position: absolute;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: 50%;
+}
+.search-bar__clear:hover { background-color: var(--color-surface-alt); color: var(--color-text); }
+.search-bar__clear svg { width: 14px; height: 14px; }
+
+/* Icon-as-submit-button — used instead of the plain decorative icon only
+   when SearchBar is in form/onSubmit mode (e.g. Home's search), so
+   clicking the icon submits like pressing Enter. Same position/size as
+   the plain .search-bar__icon it replaces. */
+.search-bar__icon-btn {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+.search-bar__icon-btn:hover { color: var(--color-primary); }
+.search-bar__icon-btn svg { width: 100%; height: 100%; }
+
+/* Quick Browse toolbar — a single horizontal row combining the reused
+   SearchBar with category shortcuts and "Browse All". Centered, medium
+   width (not full-width, not as small as the region cards), fixed
+   height with all items vertically centered. Scrolls horizontally
+   instead of wrapping when content doesn't fit. */
+.quick-browse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  height: 64px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* The reused SearchBar, sized to sit as the first toolbar item — flex:1
+   here (its own base rule) now takes effect since .quick-browse is a
+   flex row, so it naturally ends up wider than the fixed-width category
+   pills without hardcoding a width. */
+.quick-browse .search-bar {
+  flex: 1 1 360px;
+  min-width: 340px;
+}
+.quick-browse .search-bar__input {
+  height: 54px;
+  padding: 0 14px 0 38px;
+  font-size: 14px;
+  border-radius: var(--radius-pill);
+}
+.quick-browse .search-bar__icon,
+.quick-browse .search-bar__icon-btn {
+  left: 12px;
+  width: 16px;
+  height: 16px;
+}
+.quick-browse .search-bar__clear { right: 8px; }
+
+.quick-browse__pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  height: 50px;
+  padding: 0 24px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-surface-alt);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast), transform var(--transition-fast) var(--ease-standard);
+}
+.quick-browse__pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+.quick-browse__pill:active { transform: scale(0.96); }
+.quick-browse__pill svg { width: 15px; height: 15px; }
+
+.quick-browse__pill--browse-all {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-on-accent);
+}
+.quick-browse__pill--browse-all:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--text-on-accent);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .quick-browse { width: 100%; }
+}
+
+/* Filters toggle button (uses the existing .btn--outline styling; this
+   just adds the pressed/open visual state). */
+.btn--outline.is-active {
+  background-color: var(--color-primary-soft);
+}
+
+/* Sort select — reuses .field-input, sized for inline toolbar use */
+.sort-select {
+  width: auto;
+  min-width: 170px;
+  margin-bottom: 0;
+  padding: 10px 14px;
+}
+
+/* Menu page toolbar (search + filters toggle + sort) */
+.menu-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.menu-toolbar__controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.menu-toolbar__bases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* Menu layout — optional filter sidebar + results */
+.menu-layout {
+  display: block;
+}
+.menu-layout--filters-open {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.menu-results { min-width: 0; }
+
+.filter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 100px;
+}
+.filter-panel__group { display: flex; flex-direction: column; gap: 8px; }
+.filter-panel__label { font-size: 13px; font-weight: 700; color: var(--color-text); }
+.filter-panel__group .field-input { margin-bottom: 0; }
+.filter-panel__range { display: flex; align-items: center; gap: 8px; }
+.filter-panel__range .field-input { margin-bottom: 0; }
+.filter-panel__range-sep { color: var(--color-text-secondary); }
+.filter-panel__reset { margin-top: 4px; }
+
+/* Quantity stepper — replaces the Add button once an item is in the cart */
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 1;
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+}
+.qty-stepper__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: var(--text-on-accent);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast) var(--ease-standard);
+}
+.qty-stepper__btn:hover { background-color: var(--color-primary-hover); transform: scale(1.06); }
+.qty-stepper__btn:active { transform: scale(0.94); }
+.qty-stepper__btn svg { width: 14px; height: 14px; }
+.qty-stepper__value {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-primary-hover);
+  min-width: 18px;
+  text-align: center;
+}
+.qty-stepper--sm .qty-stepper__btn { width: 26px; height: 26px; }
+.qty-stepper--sm .qty-stepper__value { font-size: 13px; }
+
+@media (max-width: 900px) {
+  .menu-layout--filters-open {
+    grid-template-columns: 1fr;
+  }
+  .filter-panel { position: static; }
+}
+
+@media (max-width: 640px) {
+  .menu-toolbar { flex-direction: column; align-items: stretch; }
+  .menu-toolbar__controls { justify-content: space-between; }
+  .sort-select { flex: 1; min-width: 0; }
+}

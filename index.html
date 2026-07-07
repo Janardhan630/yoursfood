@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Applies the saved theme (default: light) to <html> before any CSS or
+      React code runs, so the correct theme paints on the very first frame
+      (no flash of the wrong theme). Kept in sync at runtime by
+      src/ThemeContext.jsx, which reads/writes the same 'theme-mode' key.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme-mode');
+          var theme = stored === 'dark' ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Food Delivery — Order Fresh, Fast</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

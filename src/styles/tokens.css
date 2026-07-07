@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Design tokens — premium food-ordering palette.
+   Light values live on :root. [data-theme="dark"] (set on <html> by the
+   FOUC-prevention script in index.html and kept in sync by ThemeContext)
+   overrides only what needs to differ so dark mode still reads as the same
+   brand. Every color elsewhere in this file set should reference one of
+   these variables — never a literal color.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f5f9;
+
+  --color-primary: #16a34a;
+  --color-primary-hover: #15803d;
+  --color-primary-soft: #dcfce7;
+
+  --color-cta: #f97316;
+  --color-cta-hover: #ea580c;
+  --color-cta-soft: #ffedd5;
+
+  --color-gold: #facc15;
+  --color-gold-ink: #78350f;
+
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+
+  --color-favorite: #ef4444;
+
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+
+  --text-on-accent: #ffffff;
+
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 3px rgba(17, 24, 39, 0.06);
+  --shadow-md: 0 10px 24px rgba(17, 24, 39, 0.08);
+  --shadow-lg: 0 20px 40px rgba(17, 24, 39, 0.12);
+  --shadow-hover: 0 24px 48px rgba(17, 24, 39, 0.16);
+
+  --overlay-bg: rgba(17, 24, 39, 0.55);
+  --tooltip-bg: #111827;
+  --tooltip-text: #f9fafb;
+
+  --scrollbar-thumb: #cbd5e1;
+
+  --font-heading: 'Poppins', 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Poppins', 'Segoe UI', sans-serif;
+
+  --transition-fast: 200ms ease;
+  --transition-base: 260ms ease;
+  --transition-slow: 320ms ease;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --focus-ring: var(--color-primary);
+  --theme-transition-duration: 300ms;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #0f172a;
+  --color-surface: #1a2436;
+  --color-surface-alt: #16202f;
+
+  --color-primary: #22c55e;
+  --color-primary-hover: #4ade80;
+  --color-primary-soft: rgba(34, 197, 94, 0.18);
+
+  --color-cta: #fb923c;
+  --color-cta-hover: #fdba74;
+  --color-cta-soft: rgba(251, 146, 60, 0.18);
+
+  --color-gold: #facc15;
+  --color-gold-ink: #3b2a06;
+
+  --color-danger: #f87171;
+  --color-danger-hover: #fca5a5;
+
+  --color-favorite: #f87171;
+
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 24px 48px rgba(0, 0, 0, 0.6);
+
+  --overlay-bg: rgba(0, 0, 0, 0.65);
+  --tooltip-bg: #f1f5f9;
+  --tooltip-text: #111827;
+
+  --scrollbar-thumb: #334155;
+}

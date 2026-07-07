@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Buttons — color hierarchy is intentional, do not flatten to one style.
+     .btn--add      green fill   -> Add to Cart (secondary action on cards)
+     .btn--order    orange fill  -> Order Now / Buy Now / primary CTA
+     .btn--outline  white+green  -> View Details / secondary neutral actions
+     .btn--danger   red fill     -> Remove / Delete
+     .btn--ghost    text only    -> low-emphasis actions (Cancel, links)
+     .icon-btn      circular white -> Wishlist heart, theme toggle, avatar
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast), transform var(--transition-fast) var(--ease-standard),
+    box-shadow var(--transition-fast);
+}
+
+.btn:active { transform: scale(0.96); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Add to Cart — green */
+.btn--add {
+  background-color: var(--color-primary);
+  color: var(--text-on-accent);
+  box-shadow: var(--shadow-sm);
+}
+.btn--add:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.03);
+}
+
+/* Order Now / Buy Now — orange, the loudest CTA, slightly larger */
+.btn--order {
+  background-color: var(--color-cta);
+  color: var(--text-on-accent);
+  font-size: 16px;
+  padding: 13px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.btn--order:hover:not(:disabled) {
+  background-color: var(--color-cta-hover);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.03);
+}
+
+/* View Details / secondary neutral — white with green border */
+.btn--outline {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.btn--outline:hover:not(:disabled) {
+  background-color: var(--color-primary-soft);
+  box-shadow: var(--shadow-sm);
+  transform: scale(1.03);
+}
+
+/* Remove / Delete — red */
+.btn--danger {
+  background-color: var(--color-danger);
+  color: var(--text-on-accent);
+  box-shadow: var(--shadow-sm);
+}
+.btn--danger:hover:not(:disabled) {
+  background-color: var(--color-danger-hover);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.03);
+}
+
+/* Ghost — text-only, low emphasis */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  padding: 12px 16px;
+}
+.btn--ghost:hover:not(:disabled) {
+  background-color: var(--color-surface-alt);
+  color: var(--color-text);
+  transform: scale(1.02);
+}
+
+.btn--block { width: 100%; }
+.btn--sm { padding: 9px 16px; font-size: 13px; }
+
+/* Circular icon-only buttons: wishlist heart, theme toggle, close, avatar ring */
+.icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast), transform var(--transition-fast) var(--ease-standard),
+    box-shadow var(--transition-fast);
+}
+.icon-btn:hover { transform: scale(1.05); box-shadow: var(--shadow-md); }
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn svg { width: 20px; height: 20px; }
+
+.icon-btn--sm { width: 34px; height: 34px; }
+.icon-btn--sm svg { width: 16px; height: 16px; }
+
+/* Wishlist heart */
+.icon-btn--fav { color: var(--color-text-secondary); }
+.icon-btn--fav.is-active {
+  color: var(--color-favorite);
+  border-color: var(--color-favorite);
+}
+.icon-btn--fav.is-active svg { fill: var(--color-favorite); }
+
+/* Rounded theme toggle */
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--theme-transition-duration) ease,
+    border-color var(--theme-transition-duration) ease,
+    box-shadow var(--transition-fast), transform var(--transition-fast) var(--ease-standard);
+}
+.theme-toggle:hover { background-color: var(--color-surface-alt); transform: scale(1.05); box-shadow: var(--shadow-md); }
+.theme-toggle:active { transform: scale(0.94); }
+
+.theme-toggle__icons { position: relative; width: 20px; height: 20px; display: block; }
+
+.theme-toggle__icon {
+  position: absolute;
+  inset: 0;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+  transition: opacity var(--theme-transition-duration) ease, transform var(--theme-transition-duration) ease;
+}
+.theme-toggle__icon.is-active { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Tooltip used on icon buttons. Opens downward by default since the only
+   current usage (food-card favourite button) sits near the top edge of an
+   overflow:hidden media box, where an upward tooltip would get clipped. */
+.icon-btn .tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 6px 10px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), background-color var(--theme-transition-duration) ease;
+  z-index: 5;
+}
+.icon-btn:hover .tooltip { opacity: 1; visibility: visible; }
