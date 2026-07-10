@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { LeafIcon, ArrowRightIcon, UserPlusIcon } from '../../components/ui/Icons'
 
 function Useracc({ onAuth, onLoginSuccess }) {
   const [mode, setMode] = useState('login') // 'login' | 'register'
@@ -70,47 +71,56 @@ function Useracc({ onAuth, onLoginSuccess }) {
 
   return (
     <div className="useracc-wrapper">
-      <div className="form-card">
+      <div className="form-card auth-card">
+        <div className="auth-badge"><LeafIcon /></div>
+        <h2 className="auth-heading">{mode === 'login' ? 'Welcome back' : 'Create your account'}</h2>
+        <p className="auth-subtitle">
+          {mode === 'login' ? 'Sign in to continue your food journey.' : 'Join Food Delivery — fast, fresh, and only a tap away.'}
+        </p>
+
         <div className="auth-tabs">
-          <button type="button" className={`auth-tab ${mode === 'login' ? 'is-active' : ''}`} onClick={() => setMode('login')} disabled={mode === 'login'}>Login</button>
-          <button type="button" className={`auth-tab ${mode === 'register' ? 'is-active' : ''}`} onClick={() => setMode('register')} disabled={mode === 'register'}>Register</button>
+          <button type="button" className={`auth-tab ${mode === 'login' ? 'is-active' : ''}`} onClick={() => setMode('login')} disabled={mode === 'login'}>Sign in</button>
+          <button type="button" className={`auth-tab ${mode === 'register' ? 'is-active' : ''}`} onClick={() => setMode('register')} disabled={mode === 'register'}>Sign up</button>
         </div>
 
         {mode === 'register' ? (
-          <div>
-            <h2>Register</h2>
-
-            <label className="field-label">Name</label>
+          <div className="auth-fields">
+            <label className="field-label">Full name</label>
             <input className="field-input" value={name} onChange={e => setName(e.target.value)} placeholder="Full name (optional)" />
             <label className="field-label">Username</label>
             <input className="field-input" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />
             <label className="field-label">Email</label>
             <input className="field-input" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email (optional)" />
-            <label className="field-label">Password</label>
-            <input className="field-input" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
-            <label className="field-label">Confirm Password</label>
-            <input className="field-input" type="password" value={confirm} onChange={e => setConfirm(e.target.value)} placeholder="Confirm password" />
 
-            <div className="auth-actions">
-              <button type="button" className="btn btn--add" onClick={handleRegister}>Create Account</button>
-              <button type="button" className="btn btn--outline" onClick={() => { clearForm(); setMode('login') }}>Cancel</button>
+            <div className="auth-fields-row">
+              <div>
+                <label className="field-label">Password</label>
+                <input className="field-input" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+              </div>
+              <div>
+                <label className="field-label">Confirm</label>
+                <input className="field-input" type="password" value={confirm} onChange={e => setConfirm(e.target.value)} placeholder="Confirm password" />
+              </div>
             </div>
+
+            <button type="button" className="btn btn--add btn--block auth-submit" onClick={handleRegister}>
+              <UserPlusIcon /> Create account
+            </button>
           </div>
         ) : (
-          <div>
-            <h2>Login</h2>
-
+          <div className="auth-fields">
             <label className="field-label">Username</label>
             <input className="field-input" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />
             <label className="field-label">Password</label>
             <input className="field-input" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
 
-            <div className="auth-actions">
-              <button type="button" className="btn btn--add" onClick={handleLogin}>Login</button>
-              <button type="button" className="btn btn--outline" onClick={clearForm}>Clear</button>
-            </div>
+            <button type="button" className="btn btn--add btn--block auth-submit" onClick={handleLogin}>
+              <ArrowRightIcon /> Sign in
+            </button>
           </div>
         )}
+
+        <p className="auth-footnote">Demo auth — your data stays on this device.</p>
       </div>
 
       {msg && (

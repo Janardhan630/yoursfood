@@ -12,6 +12,7 @@ import Useracc from './features/auth/useracc'
 import Navbar from './components/navigation/Navbar'
 import Footer from './components/layout/Footer'
 import ProtectedRoute from './routes/ProtectedRoute'
+import ThemeToggle from './features/theme/ThemeToggle'
 import { CheckCircleIcon } from './components/ui/Icons'
 
 function Layout({
@@ -48,10 +49,17 @@ function Layout({
   }, [location.pathname]);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const isAuthPage = location.pathname === '/useracc';
 
   return (
     <div className='body'>
-      <Navbar authUser={authUser} cartCount={cartCount} />
+      {isAuthPage ? (
+        <div className="auth-topbar">
+          <ThemeToggle />
+        </div>
+      ) : (
+        <Navbar authUser={authUser} cartCount={cartCount} />
+      )}
 
       {authToast && (
         <div
@@ -160,7 +168,7 @@ function Layout({
         </Routes>
       </div>
 
-      <Footer />
+      {!isAuthPage && <Footer />}
     </div>
   );
 }

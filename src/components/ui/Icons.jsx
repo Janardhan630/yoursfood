@@ -130,3 +130,13 @@ export function FilterIcon({ className }) {
     </svg>
   );
 }
+
+export function UserPlusIcon({ className }) {
+  return (
+    <svg {...shared} className={className}>
+      <circle cx="9" cy="8" r="3.6" />
+      <path d="M2.5 20c1.2-3.5 3.9-5.3 6.5-5.3s5.3 1.8 6.5 5.3" />
+      <path d="M18.5 8.5v5M16 11h5" />
+    </svg>
+  );
+}

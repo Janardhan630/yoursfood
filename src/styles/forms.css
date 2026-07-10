@@ -60,6 +60,52 @@
   padding-top: 12px;
 }
 
+.auth-topbar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.auth-card { max-width: 440px; text-align: center; }
+
+.auth-badge {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: var(--text-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-badge svg { width: 30px; height: 30px; }
+
+.auth-card .auth-heading { margin-bottom: 6px; font-size: 26px; }
+
+.auth-subtitle {
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  margin-bottom: 24px;
+}
+
+.auth-fields { text-align: left; }
+
+.auth-fields-row {
+  display: flex;
+  gap: 12px;
+}
+.auth-fields-row > div { flex: 1; }
+
+.auth-submit { margin-top: 4px; }
+
+.auth-footnote {
+  margin-top: 18px;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+
 .auth-tabs {
   display: flex;
   gap: 8px;
@@ -83,19 +129,12 @@
 }
 
 .auth-tab.is-active {
-  background-color: var(--color-surface);
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--text-on-accent);
   box-shadow: var(--shadow-sm);
 }
 
 .auth-tab:disabled { cursor: default; }
-
-.auth-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 8px;
-}
-.auth-actions .btn { flex: 1; }
 
 /* Modal (login/register status dialog) */
 .modal-overlay {
