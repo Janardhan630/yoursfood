@@ -53,20 +53,14 @@
 /* Contact page */
 .contact-form { display: flex; flex-direction: column; align-items: stretch; }
 
-/* useracc (login / register) — food-theme backdrop behind a single card */
+/* useracc (login / register) — single centered card, no colored backdrop */
 .useracc-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12px;
-  padding: clamp(28px, 5vw, 60px) clamp(16px, 4vw, 40px);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  background:
-    radial-gradient(circle at 12% 20%, rgba(22, 163, 74, 0.35), transparent 55%),
-    radial-gradient(circle at 88% 15%, rgba(249, 115, 22, 0.35), transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(250, 204, 21, 0.25), transparent 60%),
-    linear-gradient(135deg, #0f2f1c 0%, #14532d 45%, #7c2d12 100%);
+  min-height: calc(100dvh - clamp(20px, 3vw, 40px));
+  padding: clamp(16px, 4vw, 40px);
+  background: transparent;
 }
 
 .auth-topbar {
