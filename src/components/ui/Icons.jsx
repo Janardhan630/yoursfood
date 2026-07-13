@@ -131,6 +131,15 @@ export function FilterIcon({ className }) {
   );
 }
 
+export function SparklesIcon({ className }) {
+  return (
+    <svg {...shared} className={className}>
+      <path d="M9.9 15.5a2 2 0 0 0-1.4-1.4l-6.2-1.6a.5.5 0 0 1 0-1l6.2-1.6a2 2 0 0 0 1.4-1.4l1.6-6.2a.5.5 0 0 1 1 0l1.6 6.2a2 2 0 0 0 1.4 1.4l6.2 1.6a.5.5 0 0 1 0 1l-6.2 1.6a2 2 0 0 0-1.4 1.4l-1.6 6.2a.5.5 0 0 1-1 0z" />
+      <path d="M20 3v4M22 5h-4M4 17v2M5 18H3" />
+    </svg>
+  );
+}
+
 export function ClockIcon({ className }) {
   return (
     <svg {...shared} className={className}>
