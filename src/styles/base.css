@@ -29,9 +29,19 @@ html {
 
 html, body {
   height: 100%;
-  overflow-x: hidden;
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+/* overflow-x lives on body only (not html): setting it on both makes each
+   element compute a non-"visible" overflow-y and turns body into its own
+   independent scroll container instead of the viewport's scrolling element,
+   which silently breaks window.scrollY / window.scrollTo() and any
+   window-scroll listeners (e.g. the navbar's scroll-shadow, the route-change
+   scroll-to-top). Left on html:visible, body's overflow propagates to the
+   viewport as normal, so window scrolling keeps working. */
+body {
+  overflow-x: hidden;
 }
 
 #root {

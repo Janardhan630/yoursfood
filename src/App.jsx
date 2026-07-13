@@ -7,6 +7,7 @@ import Favourites from './features/favourites/Favourites'
 import Myorders from './features/orders/Myorders'
 import Cart from './features/cart/Cart'
 import Contact from './pages/Contact'
+import Landing from './pages/Landing'
 import Profile from './features/profile/Profile'
 import Useracc from './features/auth/useracc'
 import Navbar from './components/navigation/Navbar'
@@ -75,19 +76,25 @@ function Layout({
 
       <div key={location.pathname} className="page-transition">
         <Routes>
+          {/* Root: public marketing landing before login; the real Home once
+              authenticated. /home stays guarded, same as every other route. */}
           <Route
             path='/'
-            element={guard(
-              <Home
-                favourites={favourites}
-                onToggleFavourite={handleToggleFavourite}
-                onAddToCart={handleAddToCart}
-                onOrderNow={handleOrderNow}
-                onIncrementCartItem={handleIncrementCartItem}
-                onDecrementCartItem={handleDecrementCartItem}
-                cart={cart}
-              />
-            )}
+            element={
+              !authReady ? null : authUser ? (
+                <Home
+                  favourites={favourites}
+                  onToggleFavourite={handleToggleFavourite}
+                  onAddToCart={handleAddToCart}
+                  onOrderNow={handleOrderNow}
+                  onIncrementCartItem={handleIncrementCartItem}
+                  onDecrementCartItem={handleDecrementCartItem}
+                  cart={cart}
+                />
+              ) : (
+                <Landing />
+              )
+            }
           />
 
           <Route
