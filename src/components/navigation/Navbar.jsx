@@ -53,7 +53,7 @@ export default function Navbar({ authUser, cartCount }) {
           onClick={(e) => { e.preventDefault(); go('/home') }}
         >
           <span className="navbar__logo-mark"><LeafIcon /></span>
-          Food Delivery
+          <span className="navbar__logo-text">Food Delivery</span>
         </a>
 
         <div className="navbar__links">

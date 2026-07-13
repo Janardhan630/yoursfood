@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Public landing page (pre-login "/") — hero/discovery-section/food-list
+   are all reused as-is from Home; these are the two pieces unique to it.
+   ========================================================================== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  padding: 24px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast) var(--ease-standard), box-shadow var(--transition-fast);
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.feature-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+.feature-card__icon svg { width: 22px; height: 22px; }
+
+.feature-card h3 { font-size: 16px; font-weight: 700; color: var(--color-text); }
+.feature-card p { margin-top: 6px; font-size: 13.5px; line-height: 1.55; color: var(--color-text-secondary); }
+
+.landing-cta {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: clamp(40px, 7vw, 64px) 24px;
+  text-align: center;
+  color: var(--text-on-accent);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-cta));
+  box-shadow: var(--shadow-lg);
+}
+
+.landing-cta h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3.6vw, 34px);
+  font-weight: 800;
+}
+
+.landing-cta p {
+  margin: 10px auto 0;
+  max-width: 420px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.landing-cta__btn {
+  margin-top: 28px;
+  background-color: #ffffff;
+  color: var(--color-primary-hover);
+  box-shadow: var(--shadow-md);
+}
+.landing-cta__btn:hover:not(:disabled) { transform: scale(1.05); box-shadow: var(--shadow-lg); }
