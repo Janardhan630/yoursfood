@@ -3,7 +3,13 @@
    remounts (and replays this animation) on every route change.
    ========================================================================== */
 .page-transition {
-  animation: pageEnter 340ms var(--ease-out) both;
+  /* fill-mode intentionally omits "forwards": the "to" keyframe (opacity:1,
+     transform:translateY(0)) is visually identical to the element's resting
+     state, but forwards would leave a non-"none" computed transform on this
+     ancestor permanently, which turns it into the containing block for any
+     position:fixed descendant (e.g. the profile edit sidebar) instead of the
+     viewport. */
+  animation: pageEnter 340ms var(--ease-out);
 }
 
 @keyframes pageEnter {

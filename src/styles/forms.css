@@ -53,20 +53,14 @@
 /* Contact page */
 .contact-form { display: flex; flex-direction: column; align-items: stretch; }
 
-/* useracc (login / register) — food-theme backdrop behind a single card */
+/* useracc (login / register) — single centered card, no colored backdrop */
 .useracc-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12px;
-  padding: clamp(28px, 5vw, 60px) clamp(16px, 4vw, 40px);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  background:
-    radial-gradient(circle at 12% 20%, rgba(22, 163, 74, 0.35), transparent 55%),
-    radial-gradient(circle at 88% 15%, rgba(249, 115, 22, 0.35), transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(250, 204, 21, 0.25), transparent 60%),
-    linear-gradient(135deg, #0f2f1c 0%, #14532d 45%, #7c2d12 100%);
+  min-height: calc(100dvh - clamp(20px, 3vw, 40px));
+  padding: clamp(16px, 4vw, 40px);
+  background: transparent;
 }
 
 .auth-topbar {
@@ -216,9 +210,14 @@
 .profile-header h1 { font-size: 26px; }
 .profile-header .contact-info h3 {
   margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text-secondary);
+  overflow-wrap: anywhere;
 }
 
 .profile-main {
@@ -323,7 +322,8 @@
   right: 0;
   top: 0;
   height: 100%;
-  width: 360px;
+  width: min(360px, 100vw);
+  max-width: 100vw;
   background: var(--color-surface);
   color: var(--color-text);
   box-shadow: -8px 0 32px rgba(17, 24, 39, 0.16);
@@ -333,6 +333,8 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .profile-sidebar.open { transform: translateX(0); }
 .sidebar-header { display: flex; align-items: center; justify-content: space-between; }

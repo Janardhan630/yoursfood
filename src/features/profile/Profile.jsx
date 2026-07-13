@@ -185,7 +185,11 @@ export default function Profile({ setAuthUser }) {
         <div>
           <h1>{user ? user.name : 'Guest'}</h1>
           <div className='contact-info'>
-            <h3>{phone} &nbsp;&nbsp;&nbsp;{email}</h3>
+            <h3>
+              <span>{phone}</span>
+              <span aria-hidden='true'>•</span>
+              <span>{email}</span>
+            </h3>
           </div>
         </div>
         <div>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { LeafIcon, ArrowRightIcon, UserPlusIcon } from '../../components/ui/Icons'
 
+const FIXED_CREDENTIALS = { username: 'janardhan', password: 'jana123', name: 'Janardhan' }
+
 function Useracc({ onAuth, onLoginSuccess }) {
   const [mode, setMode] = useState('login') // 'login' | 'register'
   const [name, setName] = useState('')
@@ -53,6 +55,15 @@ function Useracc({ onAuth, onLoginSuccess }) {
 
   const handleLogin = () => {
     try {
+      if (username === FIXED_CREDENTIALS.username && password === FIXED_CREDENTIALS.password) {
+        const u = { name: FIXED_CREDENTIALS.name, username: FIXED_CREDENTIALS.username, email: '' }
+        localStorage.setItem('user', JSON.stringify(u))
+        clearForm()
+        if (onAuth) onAuth(u)
+        if (onLoginSuccess) onLoginSuccess()
+        navigate(redirectTo, { replace: true })
+        return
+      }
       const raw = localStorage.getItem('auth_credentials')
       if (!raw) return setMsg('No account found. Please register first.')
       const creds = JSON.parse(raw)
