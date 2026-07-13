@@ -70,6 +70,34 @@
   z-index: 100;
 }
 
+.auth-back-home {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    box-shadow var(--transition-fast), transform var(--transition-fast) var(--ease-standard);
+}
+.auth-back-home svg { width: 16px; height: 16px; }
+.auth-back-home:hover {
+  background-color: var(--color-surface-alt);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
 /* Compact auth card — overrides .form-card's spacing (width/max-width,
    colors, border-radius and shadow are inherited unchanged from
    .form-card; only vertical spacing shrinks, on an 8px scale). */
