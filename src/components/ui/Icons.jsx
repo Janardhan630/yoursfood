@@ -98,6 +98,14 @@ export function ArrowRightIcon({ className }) {
   );
 }
 
+export function ArrowLeftIcon({ className }) {
+  return (
+    <svg {...shared} className={className}>
+      <path d="M20 12H4M11 5l-7 7 7 7" />
+    </svg>
+  );
+}
+
 export function SearchIcon({ className }) {
   return (
     <svg {...shared} className={className}>

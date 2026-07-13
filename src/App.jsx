@@ -14,7 +14,7 @@ import Navbar from './components/navigation/Navbar'
 import Footer from './components/layout/Footer'
 import ProtectedRoute from './routes/ProtectedRoute'
 import ThemeToggle from './features/theme/ThemeToggle'
-import { CheckCircleIcon } from './components/ui/Icons'
+import { CheckCircleIcon, ArrowLeftIcon } from './components/ui/Icons'
 
 function Layout({
   authUser,
@@ -40,6 +40,7 @@ function Layout({
   );
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Scroll to top on every route change so the fade/slide-up page-enter
   // animation starts from a consistent position instead of wherever the
@@ -55,9 +56,18 @@ function Layout({
   return (
     <div className='body'>
       {isAuthPage ? (
-        <div className="auth-topbar">
-          <ThemeToggle />
-        </div>
+        <>
+          <button
+            type="button"
+            className="auth-back-home"
+            onClick={() => navigate('/')}
+          >
+            <ArrowLeftIcon /> Home
+          </button>
+          <div className="auth-topbar">
+            <ThemeToggle />
+          </div>
+        </>
       ) : (
         <Navbar authUser={authUser} cartCount={cartCount} />
       )}
